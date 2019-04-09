@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_Schoolname"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="广西师范大学"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentStart="true"
+        tools:ignore="RtlHardcoded" />
+    <TextView
+        android:id="@+id/tvx2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_Schoolname"
+        android:layout_toEndOf="@+id/tv_Schoolname"
+        android:textSize="18sp"
+        android:text=" | "/>
+    <TextView
+        android:id="@+id/tv_Professional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvx2"
+        android:layout_toEndOf="@+id/tvx2"
+        android:text="通信工程"/>
+    <TextView
+        android:id="@+id/tvx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_Professional"
+        android:layout_toEndOf="@+id/tv_Professional"
+        android:text=" · "/>
+    <TextView
+        android:id="@+id/tv_HighestDegree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvx"
+        android:layout_toEndOf="@+id/tvx"
+        android:text="本科"/>
+
+    <TextView
+        android:id="@+id/tvx3"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_Schoolname"
+        android:text="教育时间：" />
+
+    <TextView
+        android:id="@+id/tv_time1"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_Schoolname"
+        android:layout_toEndOf="@+id/tvx3"
+        android:text="2017.01" />
+
+    <TextView
+        android:id="@+id/tvx4"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_Schoolname"
+        android:layout_toEndOf="@+id/tv_time1"
+        android:text=" - " />
+
+    <TextView
+        android:id="@+id/tv_time2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_Schoolname"
+        android:layout_toEndOf="@+id/tvx4"
+        android:layout_marginTop="10dp"
+        android:text="2018.06" />
+
+    <TextView
+        android:id="@+id/tv_educationExperience"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/tvx3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SchoolProfiles"/>
+
+
+</RelativeLayout>

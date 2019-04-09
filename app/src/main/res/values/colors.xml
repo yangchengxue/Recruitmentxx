@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary2">#922a63d4</color>
+    <color name="itemBg">#1affa200</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="gxnuColor">#D7188A</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="gray">#fafafa</color>
+    <color name="gray2">#8a8a8a</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="colorGray">#C0C0C0</color>
+    <color name="colorWhite">#FFFFFF</color>
+</resources>

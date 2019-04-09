@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.tuesda.walker.circlerefresh.CircleRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:AniBackColor="#ff8b90af"
+        app:AniForeColor="#ffffffff"
+        app:CircleSmaller="6"
+        android:id="@+id/discoverRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/c1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.wang.avi.AVLoadingIndicatorView
+                            android:id="@+id/avi2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            app:indicatorColor="@color/gxnuColor"
+                            app:indicatorName="BallSpinFadeLoaderIndicator" />
+                        <TextView
+                            android:id="@+id/t1"
+                            android:text="最新上映电影"
+                            android:textStyle="bold"
+                            android:layout_margin="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="HardcodedText" />
+                        <TextView
+                            android:id="@+id/t2"
+                            android:layout_margin="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:text="查看更多 >" />
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/SurrRecyclerview"
+                            android:layout_below="@+id/t1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <View
+                    android:id="@+id/v1"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:layout_below="@id/c1"
+                    android:background="@color/gxnuColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/c2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_below="@+id/v1">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.wang.avi.AVLoadingIndicatorView
+                            android:id="@+id/avi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            app:indicatorColor="@color/gxnuColor"
+                            app:indicatorName="BallSpinFadeLoaderIndicator" />
+                        <TextView
+                            android:id="@+id/t12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:text="校园公告"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/t22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="4dp"
+                            android:text="查看更多 >" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/SurrRecyclerview2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/t12" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+    </com.tuesda.walker.circlerefresh.CircleRefreshLayout>
+
+
+
+</RelativeLayout>

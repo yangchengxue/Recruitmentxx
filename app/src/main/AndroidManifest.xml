@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ycx36.recruitment">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 如果你想从文件或互联网上加载图片（轮播图权限） -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 基础模块（必须加入以下声明）START -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <application
+        android:name=".Application.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logoh"
+        android:supportsRtl="true"
+        android:theme="@style/mNoTitleStyle">
+
+        <!-- 实时通信模块、推送（均需要加入以下声明） START -->
+        <!-- 实时通信模块、推送都要使用 PushService -->
+        <service android:name="com.avos.avoscloud.PushService" />
+
+        <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <!-- 实时通信模块、推送 END -->
+        <!-- 反馈组件（需要加入以下声明）START -->
+        <activity android:name="com.avos.avoscloud.feedback.ThreadActivity" />
+        <!-- 反馈组件 END -->
+
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.activity.PhotosShowActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_photos_show"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".view.activity.FeedbackActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".view.activity.SchoolMapActivity" />
+        <activity android:name=".view.activity.ShowBigPhotoActivity" />
+        <activity
+            android:name=".view.activity.DetailIntroductionActivity"
+            android:label="@string/title_activity_detail_introduction"
+            android:theme="@style/mNoTitleStyle" />
+        <activity
+            android:name=".view.activity.activity_gxnuRules"
+            android:label="@string/gxnuRules"
+            android:theme="@style/mNoTitleStyle" />
+        <activity
+            android:name=".view.activity.activity_JobStrategy"
+            android:label="@string/jobstrategy"
+            android:theme="@style/mNoTitleStyle" />
+        <activity android:name=".view.activity.UserInfoActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.RegisterActivity" />
+        <activity android:name=".view.activity.Fill_InformationActivity" />
+        <activity android:name=".view.activity.MovieDetailsActivity" />
+        <activity android:name=".view.activity.AddAttentionActivity" />
+        <activity
+            android:name="cn.leancloud.chatkit.activity.LCIMConversationActivity"
+            android:theme="@style/LCIMKitTheme">
+            <intent-filter>
+                <action android:name="cn.leancloud.chatkit.conversation_item_click_action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.activity.UserDetailInfoActivity" />
+        <activity android:name=".view.activity.ContactUsActivity" />
+        <activity android:name=".view.activity.MyResmeActivity" />
+        <activity android:name=".view.activity.FillResmeActivity" />
+        <activity android:name=".view.activity.MyDetailInfoActivity" />
+        <activity android:name=".view.activity.EditAccountInfoActivity" />
+        <activity android:name=".view.activity.AddWorkExperienceActivity" />
+        <activity android:name=".view.activity.Fill_WorkInformationActivity" />
+        <activity android:name=".view.activity.NewsDetailActivity" />
+        <activity android:name=".view.activity.AddProjectExperienceActivity" />
+        <activity android:name=".view.activity.AddEducationexpErienceActivity" />
+        <activity android:name=".view.activity.MapSearch" />
+        <activity android:name=".view.activity.MapActivity" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="64082cad470b4702e31d069026ebf0bb" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity android:name=".view.activity.activity_aboutApp" />
+        <activity android:name=".view.activity.activity_ChangeTitle" />
+        <activity
+            android:name=".view.activity.activity_TalentsTreatment"
+            android:label="@string/TalentsTreatment"
+            android:theme="@style/mNoTitleStyle" />
+    </application>
+
+</manifest>

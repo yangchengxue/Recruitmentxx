@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGray">
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.amap.api.maps.MapView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:id="@+id/route_tools"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_walk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:text="步行"
+                android:textSize="14sp"
+                android:textColor="#000000"/>
+            <Button
+                android:id="@+id/btn_bus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:text="公交车"
+                android:textSize="14sp"
+                android:textColor="#000000"/>
+            <Button
+                android:id="@+id/btn_drive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:text="开车"
+                android:textSize="14sp"
+                android:textColor="#000000"/>
+            <Button
+                android:id="@+id/btn_ride"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:text="骑行"
+                android:textSize="14sp"
+                android:textColor="#000000"/>
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:text="清空"
+                android:textSize="14sp"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search"
+                android:layout_marginLeft="13dp"
+                />
+
+            <TextView
+                android:id="@+id/text_search"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:hint="请输入地点"
+                android:gravity="center|left"
+                android:singleLine="true"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
