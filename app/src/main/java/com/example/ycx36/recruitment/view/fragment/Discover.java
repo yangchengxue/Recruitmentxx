@@ -21,7 +21,8 @@ public class Discover extends Fragment {
 
     private View view ;
     FragmentPagerItemAdapter adapter;
-    private IfragmentView ifragmentView;
+    private IfragmentView ifragmentView;   //接口
+
 
     public View onCreateView(LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState){
         if (view == null) {
