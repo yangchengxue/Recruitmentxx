@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/linear2"
                 android:layout_margin="5dp"
                 android:layout_width="match_parent"
@@ -43,8 +44,8 @@
                 android:id="@+id/recyclerPosition"
                 android:layout_below="@+id/linear2"
                 android:layout_centerHorizontal="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <LinearLayout
