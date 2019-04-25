@@ -28,10 +28,8 @@ public interface IfragmentView {
 
     //Recycler的显示
     void showRecyclerViewToSurroundingThingsTop(RecyclerView recycler1,RecyclerView recycler2,final AVLoadingIndicatorView avi,final AVLoadingIndicatorView avi2);
-    void showRecyclerViewToPrivateMessage(RecyclerView recycler,Adapter_Message adapter);
     void showRecyclerViewToRecruitmentInformation(RecyclerView recycler,Adapter_Position adapter);
-    void GetMyFollwersToPrivateMessage(RecyclerView recycler,ArrayList<MessageDataBean> itemFollwerslist);  //获取当前用户的关注列表
-
+    void GetMyFollwersToPrivateMessage(RecyclerView recycler,final AVLoadingIndicatorView avi);  //获取当前用户的关注列表
 
     void setBanner(BGABanner mContentBanner);  //设置轮播图
 

@@ -37,7 +37,6 @@ public class PhotosShowActivity extends AppCompatActivity{
     @BindView(R.id.recyclerSchoolText) RecyclerView recyclerSchoolText;
     @BindView(R.id.cancelFullScreen) View mContentView;
     @BindView(R.id.fullscreen_content_controls) View mControlsView;
-    @BindView(R.id.refresh_layout) CircleRefreshLayout refresh_layout;
 
     private ImplClass_IactivityView implClass_iactivityView;
     private static final boolean AUTO_HIDE = true; //是否自动隐藏
@@ -63,7 +62,7 @@ public class PhotosShowActivity extends AppCompatActivity{
         });
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
         implClass_iactivityView.showRecyclerViewToPhotoShowActivity(recyclerSchoolText);
-        implClass_iactivityView.showWaterDropFresh(refresh_layout);
+
     }
 
     @Override

@@ -10,24 +10,16 @@
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <RelativeLayout
-        android:layout_marginTop="15dp"
         android:id="@+id/cancelFullScreen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.tuesda.walker.circlerefresh.CircleRefreshLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:AniBackColor="#ff8b90af"
-            app:AniForeColor="#ffffffff"
-            app:CircleSmaller="6"
-            android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerSchoolText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
-        </com.tuesda.walker.circlerefresh.CircleRefreshLayout>
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
 

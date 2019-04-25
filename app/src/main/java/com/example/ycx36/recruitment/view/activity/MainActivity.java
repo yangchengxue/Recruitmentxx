@@ -137,6 +137,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             permissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         }
 
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.RECORD_AUDIO);
+        }
+
         if (!permissionList.isEmpty()){  //申请的集合不为空时，表示有需要申请的权限
             ActivityCompat.requestPermissions(this,permissionList.toArray(new String[permissionList.size()]),1);
         }else { //所有的权限都已经授权过了

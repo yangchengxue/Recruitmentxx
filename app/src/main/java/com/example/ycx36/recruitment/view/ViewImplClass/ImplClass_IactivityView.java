@@ -102,74 +102,119 @@ public class ImplClass_IactivityView implements IactivityView{
     private ArrayList<SchoolSceneryText> schoolSceneryTexts = new ArrayList<>();
     private Adapter_PhotoText adapter_photoText;
     private ArrayList<String> PhotoUrls = new ArrayList<>();
+
+//    @Override
+//    //百度API图片
+//    public void showRecyclerViewToPhotoShowActivity(final RecyclerView recycler) {
+//        @SuppressLint("HandlerLeak") final Handler handler = new Handler() {
+//            public void handleMessage(Message msg) {
+//                switch (msg.what) {
+//                    case 1:
+//                        /*获取一个网格布局管理器（设置为瀑布流模式显示的时候用这个管理器）*/
+//                        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL); //3为指定布局的列数，VERTICAL为排列方式
+//                        recycler.setLayoutManager(layoutManager);  //将布局管理器设置到recyclerView中
+//                        recycler.setItemAnimator(new DefaultItemAnimator());  //调用系统默认的删除增加item的动画
+//                        adapter_photoText = new Adapter_PhotoText(schoolSceneryTexts); //获取适配器实例
+//                        recycler.setAdapter(adapter_photoText);
+//                        adapter_photoText.setOnItemClickListener(new Adapter_PhotoText.OnItemClickListener() {
+//                            @Override
+//                            public void setOnItemClickListener(View view, int position) {
+//                                Intent intent = new Intent(context, ShowBigPhotoActivity.class);
+//                                Bundle bundle = new Bundle();      //创建一个budle对象
+//                                bundle.putString("PhototTitle", adapter_photoText.getCurrentNameData(position));  //写入数据
+//                                bundle.putString("path", PhotoUrls.get(position));  //写入数据
+//                                intent.putExtras(bundle);
+//                                context.startActivity(intent);
+//                            }
+//                        });
+//
+//                        /**长按事件*/
+//                        adapter_photoText.setOnLongClickListener(new Adapter_PhotoText.OnLongClickListener() {
+//                            @Override
+//                            public void setOnLongClickListener(View view, final int position) {
+//                            }
+//                        });
+//                        break;
+//                }
+//            }
+//        };
+//        Retrofit retrofit2 = new Retrofit.Builder()
+//                .addConverterFactory(GsonConverterFactory.create())  //Gson解析器
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .baseUrl("http://image.baidu.com")
+//                .build();
+//        GetBDPhotosRequest_Interface getBDPhotosRequest_interface = retrofit2.create(GetBDPhotosRequest_Interface.class);
+//
+//        getBDPhotosRequest_interface.getBDPhotosData("0", "50", "壁纸", "全部", "utf8")
+//                .subscribeOn(Schedulers.io())  //观察者切换新线程,subscribe只能调用一次。
+//                .doOnNext(new Action1<Gson_BDPhotosBean>() {    //请求结束后调用 doOnNext(),并获得data数据
+//                    @Override
+//                    public void call(Gson_BDPhotosBean datas) {
+//                        for (int i=0; i <datas.getData().size()-1 ;i++){
+//                            String s0 = datas.getData().get(i).getAbs();
+//                            if (s0.length()>9){
+//                                s0 = s0.substring(0,9)+"…";
+//                            }
+//                            PhotoUrls.add(datas.getData().get(i).getImage_url());
+//                            SchoolSceneryText schoolSceneryText = new SchoolSceneryText(s0, GetDraweeControler(datas.getData().get(i).getImage_url()));
+//                            schoolSceneryTexts.add(schoolSceneryText);
+//                        }
+//                        Message message = new Message();  //创建一个message对象。并将它的what字段的值指定为UPDATA_TEXT
+//                        message.what = 1;
+//                        handler.sendMessage(message);     //handler去发送消息
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())   //被观察者切换到主线程
+//                .subscribe(new Action1<Gson_BDPhotosBean>() {    //观察者监听到datas数据,主线程中执行
+//                    @Override
+//                    public void call(Gson_BDPhotosBean datas) {
+//
+//                    }
+//                });
+//    }
+
     @Override
+    //师大图片
     public void showRecyclerViewToPhotoShowActivity(final RecyclerView recycler) {
-        @SuppressLint("HandlerLeak") final Handler handler = new Handler() {
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case 1:
-                        /*获取一个网格布局管理器（设置为瀑布流模式显示的时候用这个管理器）*/
-                        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL); //3为指定布局的列数，VERTICAL为排列方式
-                        recycler.setLayoutManager(layoutManager);  //将布局管理器设置到recyclerView中
-                        recycler.setItemAnimator(new DefaultItemAnimator());  //调用系统默认的删除增加item的动画
-                        adapter_photoText = new Adapter_PhotoText(schoolSceneryTexts); //获取适配器实例
-                        recycler.setAdapter(adapter_photoText);
-                        adapter_photoText.setOnItemClickListener(new Adapter_PhotoText.OnItemClickListener() {
-                            @Override
-                            public void setOnItemClickListener(View view, int position) {
-                                Intent intent = new Intent(context, ShowBigPhotoActivity.class);
-                                Bundle bundle = new Bundle();      //创建一个budle对象
-                                bundle.putString("PhototTitle", adapter_photoText.getCurrentNameData(position));  //写入数据
-                                bundle.putString("path", PhotoUrls.get(position));  //写入数据
-                                intent.putExtras(bundle);
-                                context.startActivity(intent);
-                            }
-                        });
 
-                        /**长按事件*/
-                        adapter_photoText.setOnLongClickListener(new Adapter_PhotoText.OnLongClickListener() {
-                            @Override
-                            public void setOnLongClickListener(View view, final int position) {
-                            }
-                        });
-                        break;
-                }
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL); //3为指定布局的列数，VERTICAL为排列方式
+        recycler.setLayoutManager(layoutManager);  //将布局管理器设置到recyclerView中
+        recycler.setItemAnimator(new DefaultItemAnimator());
+        addData("http://lc-apsilusi.cn-n1.lcfile.com/a1badecbf5b3a29e9492/t1.jpg","师大王城校区正门");
+        addData("http://lc-apsilusi.cn-n1.lcfile.com/0c6252f4b91c8976a02a/t2.jpg","师大育才校区西门");
+        addData("http://lc-apsilusi.cn-n1.lcfile.com/0227bd08fc066be1d4b1/t3.jpg","师大王城校区");
+        addData("http://lc-apsilusi.cn-n1.lcfile.com/8c43325426296b5405f9/t4.jpg","师大育才校区图书馆");
+        addData("http://lc-apsilusi.cn-n1.lcfile.com/59b112594d6b8cdaf7a4/t5.jpg","师大雁山校区风景");
+        addData("http://lc-apsilusi.cn-n1.lcfile.com/d1c78c4e35895235f829/t6.jpg","师大王城校区风景");
+        adapter_photoText = new Adapter_PhotoText(schoolSceneryTexts); //获取适配器实例
+        recycler.setAdapter(adapter_photoText);
+        adapter_photoText.setOnItemClickListener(new Adapter_PhotoText.OnItemClickListener() {
+            @Override
+            public void setOnItemClickListener(View view, int position) {
+                Intent intent = new Intent(context, ShowBigPhotoActivity.class);
+                Bundle bundle = new Bundle();      //创建一个budle对象
+                bundle.putString("PhototTitle", adapter_photoText.getCurrentNameData(position));  //写入数据
+                bundle.putString("path", PhotoUrls.get(position));  //写入数据
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             }
-        };
-        Retrofit retrofit2 = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())  //Gson解析器
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl("http://image.baidu.com")
-                .build();
-        GetBDPhotosRequest_Interface getBDPhotosRequest_interface = retrofit2.create(GetBDPhotosRequest_Interface.class);
+        });
 
-        getBDPhotosRequest_interface.getBDPhotosData("0", "50", "壁纸", "全部", "utf8")
-                .subscribeOn(Schedulers.io())  //观察者切换新线程,subscribe只能调用一次。
-                .doOnNext(new Action1<Gson_BDPhotosBean>() {    //请求结束后调用 doOnNext(),并获得data数据
-                    @Override
-                    public void call(Gson_BDPhotosBean datas) {
-                        for (int i=0; i <datas.getData().size()-1 ;i++){
-                            String s0 = datas.getData().get(i).getAbs();
-                            if (s0.length()>9){
-                                s0 = s0.substring(0,9)+"…";
-                            }
-                            PhotoUrls.add(datas.getData().get(i).getImage_url());
-                            SchoolSceneryText schoolSceneryText = new SchoolSceneryText(s0, GetDraweeControler(datas.getData().get(i).getImage_url()));
-                            schoolSceneryTexts.add(schoolSceneryText);
-                        }
-                        Message message = new Message();  //创建一个message对象。并将它的what字段的值指定为UPDATA_TEXT
-                        message.what = 1;
-                        handler.sendMessage(message);     //handler去发送消息
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())   //被观察者切换到主线程
-                .subscribe(new Action1<Gson_BDPhotosBean>() {    //观察者监听到datas数据,主线程中执行
-                    @Override
-                    public void call(Gson_BDPhotosBean datas) {
+        /**长按事件*/
+        adapter_photoText.setOnLongClickListener(new Adapter_PhotoText.OnLongClickListener() {
+            @Override
+            public void setOnLongClickListener(View view, final int position) {
+            }
+        });
 
-                    }
-                });
     }
+
+    private void addData(String path,String name){
+        PhotoUrls.add(path);
+        SchoolSceneryText schoolSceneryText = new SchoolSceneryText(name, GetDraweeControler(path));
+        schoolSceneryTexts.add(schoolSceneryText);
+    }
+
 
     /**返回一个Drawee控制器，用于加载图片*/
     public DraweeController GetDraweeControler(final String path){
@@ -352,9 +397,6 @@ public class ImplClass_IactivityView implements IactivityView{
                 new CircleRefreshLayout.OnCircleRefreshListener() {
                     @Override
                     public void refreshing() {
-                        // do something when refresh starts
-//                        adapter = new Adapter_PhotoText(activityPresenter.getShowPhotoAndText()); //获取适配器实例
-//                        recyclerSchoolText.setAdapter(adapter);
                         new Thread(new Runnable(){
                             public void run(){
                                 try {
@@ -420,6 +462,11 @@ public class ImplClass_IactivityView implements IactivityView{
                 } else {
                     ft.hide(fragment1).show(fragment2).commit();
                 }
+                break;
+            case 3:
+                ft.add(R.id.messageFragment_layout, fragment1);
+                ft.add(R.id.messageFragment_layout, fragment2);
+                ft.hide(fragment1).show(fragment2).commit();
                 break;
         }
     }

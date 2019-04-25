@@ -3,59 +3,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.ycx36.recruitment.util.MyReboundScrollView
+
+    <com.tuesda.walker.circlerefresh.CircleRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:AniBackColor="#E91E63"
+        app:AniForeColor="#ffffffff"
+        app:CircleSmaller="6">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/linear2"
-                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
-
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/gxnuColor" />
 
                 <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:text="职位列表"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/toTalentsTreatment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/item_bg"
+                    android:text="引才待遇"
                     android:textColor="@color/gxnuColor"
-                    android:text="最新发布" />
+                    android:textStyle="bold" />
 
-                <View
-                    android:layout_width="20dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/gxnuColor" />
 
             </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerPosition"
-                android:layout_below="@+id/linear2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:id="@+id/linear3"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_below="@+id/linear2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <LinearLayout
+                android:id="@+id/linear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerPosition"
-                android:orientation="horizontal">
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <View
                     android:layout_width="10dp"
@@ -78,8 +86,10 @@
                     android:background="@color/black_overlay" />
 
             </LinearLayout>
+
         </RelativeLayout>
 
-    </com.example.ycx36.recruitment.util.MyReboundScrollView>
+    </com.tuesda.walker.circlerefresh.CircleRefreshLayout>
+
 
 </RelativeLayout>

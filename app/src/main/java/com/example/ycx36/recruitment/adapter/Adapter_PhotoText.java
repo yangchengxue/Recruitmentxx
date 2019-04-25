@@ -126,6 +126,10 @@ public class Adapter_PhotoText extends RecyclerView.Adapter<Adapter_PhotoText.Vi
     public String getCurrentNameData(int position){
         return mData.get(position).getName();
     }
+
+    public String getCurrentURIData(int position){
+        return mData.get(position).getimageUri();
+    }
     public String getCurrentPhotoUriData(int position){
         return mData.get(position).getimageUri();
     }

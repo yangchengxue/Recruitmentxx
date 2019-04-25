@@ -51,7 +51,7 @@ public class Message2 extends Fragment {
             iactivityView = new ImplClass_IactivityView(view.getContext());
             ifragmentView = new ImplClass_IfragmentView(view.getContext());
             ifragmentView.ChangeMessageTitleStyle(2,getActivity(),RelativePrivate,t1,RelativeContact,t2,RelativeAddUser,t3);
-            iactivityView.showFragment(2,fragmentManager,chatList,privateMessage);
+            iactivityView.showFragment(3,fragmentManager,chatList,privateMessage);
         }
         return view;
     }
@@ -60,18 +60,14 @@ public class Message2 extends Fragment {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.RelativePrivate:
-//                iactivityView.replaceFragment(2, fragmentManager, chatList);
                 iactivityView.showFragment(1,fragmentManager,chatList,privateMessage);
                 ifragmentView.ChangeMessageTitleStyle(1,getActivity(),RelativePrivate,t1,RelativeContact,t2,RelativeAddUser,t3);
                 break;
             case R.id.RelativeContact:
-//                iactivityView.replaceFragment(2,fragmentManager,privateMessage);
                 iactivityView.showFragment(2,fragmentManager,chatList,privateMessage);
                 ifragmentView.ChangeMessageTitleStyle(2,getActivity(),RelativePrivate,t1,RelativeContact,t2,RelativeAddUser,t3);
                 break;
             case R.id.RelativeAddUser:
-//                iactivityView.replaceFragment(2,fragmentManager,privateMessage);
-//                ifragmentView.ChangeMessageTitleStyle(3,getActivity(),RelativePrivate,t1,RelativeContact,t2,RelativeAddUser,t3);
                 startActivity(new Intent(getActivity(), AddAttentionActivity.class));
                 break;
 

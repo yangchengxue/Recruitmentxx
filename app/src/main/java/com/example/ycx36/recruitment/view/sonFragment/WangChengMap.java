@@ -26,7 +26,6 @@ public class WangChengMap extends Fragment {
     String path = "http://lc-apsilusi.cn-n1.lcfile.com/45131bcc0e0a6574343b.jpg";
     String PhototTitle = "王城校区地图";
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         if (view == null) {
             view = inflater.inflate(R.layout.wangchengmap, container, false);
             ButterKnife.bind(this, view);

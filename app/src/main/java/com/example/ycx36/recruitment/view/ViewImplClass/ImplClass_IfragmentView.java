@@ -104,7 +104,8 @@ public class ImplClass_IfragmentView implements IfragmentView {
 
         avi.show();
         avi2.show();
-        @SuppressLint("HandlerLeak") final Handler handler1 = new Handler(){
+        @SuppressLint("HandlerLeak")
+        final Handler handler = new Handler(){
             public void handleMessage(Message msg){
                 switch (msg.what){
                     case 1:
@@ -133,15 +134,8 @@ public class ImplClass_IfragmentView implements IfragmentView {
                             public void setOnLongClickListener(View view, int position) {
                             }
                         });
+                        avi.hide();
                         break;
-                }
-                avi2.hide();
-            }
-        };
-
-        @SuppressLint("HandlerLeak") final Handler handler2 = new Handler(){
-            public void handleMessage(Message msg){
-                switch (msg.what){
                     case 2:
                         /*获取一个网格布局管理器（设置为瀑布流模式显示的时候用这个管理器）*/
                         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL); //3为指定布局的列数，VERTICAL为排列方式
@@ -167,11 +161,9 @@ public class ImplClass_IfragmentView implements IfragmentView {
                             public void setOnLongClickListener(View view, int position) {
                             }
                         });
-                        break;
-                    default:
+                        avi2.hide();
                         break;
                 }
-                avi.hide();
             }
         };
 
@@ -199,7 +191,7 @@ public class ImplClass_IfragmentView implements IfragmentView {
                         }
                         Message message = new Message();  //创建一个message对象。并将它的what字段的值指定为UPDATA_TEXT
                         message.what = 1;
-                        handler1.sendMessage(message);     //handler去发送消息
+                        handler.sendMessage(message);     //handler去发送消息
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())   //被观察者切换到主线程
@@ -235,7 +227,7 @@ public class ImplClass_IfragmentView implements IfragmentView {
                         }
                         Message message = new Message();  //创建一个message对象。并将它的what字段的值指定为UPDATA_TEXT
                         message.what = 2;
-                        handler2.sendMessage(message);     //handler去发送消息
+                        handler.sendMessage(message);     //handler去发送消息
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())   //被观察者切换到主线程
@@ -261,55 +253,6 @@ public class ImplClass_IfragmentView implements IfragmentView {
                     .build();
             return controller;
         }else return null;
-
-    }
-
-
-
-    private ArrayList<MessageDataBean> datalist3 = new ArrayList<>();
-    @Override
-    public void showRecyclerViewToPrivateMessage(RecyclerView recycler, Adapter_Message adapter) {
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL); //3为指定布局的列数，VERTICAL为排列方式
-        recycler.setLayoutManager(layoutManager);  //将布局管理器设置到recyclerView中
-        recycler.setItemAnimator(new DefaultItemAnimator());  //调用系统默认的删除增加item的动画
-        adapter = new Adapter_Message(activityPresenter.getShowMessageData(datalist3)); //获取适配器实例
-        recycler.setAdapter(adapter);
-
-        /**条目点击事件*/
-        adapter.setOnItemClickListener(new Adapter_Message.OnItemClickListener() {
-            @Override
-            public void setOnItemClickListener(View view, final int position) {
-                AVUser currentUser = AVUser.getCurrentUser();
-                if (currentUser != null) {
-                    String userName = currentUser.getUsername();
-                    final ArrayList<MessageDataBean> datalistToPrivateMessage = activityPresenter.getShowMessageData(datalist3);
-                    LCChatKit.getInstance().open(userName, new AVIMClientCallback() {
-                        @Override
-                        public void done(AVIMClient avimClient, AVIMException e) {
-                            if (null == e) {
-                                Intent intent = new Intent(context, LCIMConversationActivity.class);
-                                intent.putExtra(LCIMConstants.PEER_ID, datalistToPrivateMessage.get(position).getUserName());
-                                context.startActivity(intent);
-                            } else {
-                                Toast.makeText(context, "" + e.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(context, "您还没有登录，请登录。", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        /**条目长按事件*/
-        adapter.setOnLongClickListener(new Adapter_Message.OnLongClickListener() {
-            @Override
-            public void setOnLongClickListener(View view, final int position) {
-                /**删除条目的方法*/
-//                adapter.removeData(position);
-                //Toast.makeText(getActivity(),"这是条目"+position+1,Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
     }
 
@@ -344,10 +287,44 @@ public class ImplClass_IfragmentView implements IfragmentView {
 
 
     /**获取当前用户的关注列表*/
+    private List<String> listName = new ArrayList<>();
+    private List<String> listUserPhotoUris = new ArrayList<>();
+    private ArrayList<MessageDataBean> itemFollwerslist = new ArrayList<>();
+    private Adapter_Message adapter_message;
 
     @Override
-    public void GetMyFollwersToPrivateMessage(final RecyclerView recycler, final ArrayList<MessageDataBean> itemFollwerslist) {
-//        itemFollwerslist.clear();
+    public void GetMyFollwersToPrivateMessage(final RecyclerView recycler, final AVLoadingIndicatorView avi) {
+        avi.show();
+        @SuppressLint("HandlerLeak") final Handler handler = new Handler() {
+            public void handleMessage(Message msg) {
+                if (msg.what == 3) {
+                    StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+                    recycler.setLayoutManager(layoutManager);  //将布局管理器设置到recyclerView中
+                    recycler.setNestedScrollingEnabled(false);  //recyclerView设置禁止嵌套滑动
+                    adapter_message = new Adapter_Message(itemFollwerslist); //获取适配器实例
+                    recycler.setAdapter(adapter_message);
+                    /**条目点击事件*/
+                    adapter_message.setOnItemClickListener(new Adapter_Message.OnItemClickListener() {
+                        @Override
+                        public void setOnItemClickListener(View view, int position) {
+                            Intent intent = new Intent(context, UserDetailInfoActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("userObjectId", "");
+                            bundle.putString("userName", listName.get(position));
+                            intent.putExtras(bundle);
+                            context.startActivity(intent);
+                        }
+                    });
+                    /**条目长按事件*/
+                    adapter_message.setOnLongClickListener(new Adapter_Message.OnLongClickListener() {
+                        @Override
+                        public void setOnLongClickListener(View view, final int position) {
+                        }
+                    });
+                    avi.hide();
+                }
+            }
+        };
         //查询关注者
         AVUser avUser = AVUser.getCurrentUser();
         if (avUser != null) {
@@ -356,55 +333,23 @@ public class ImplClass_IfragmentView implements IfragmentView {
                 @Override
                 public void done(final List<AVUser> avObjects, AVException avException) {
                     //avObjects 就是用户的关注用户列表
-                    final List<String> listName = new ArrayList<>();
-                    final List<String> listUserPhotoUris = new ArrayList<>();
-//                    final List<String> listUserobjectID = new ArrayList<>();
-                    int i;
-                    for (i = 0; i < avObjects.size(); i++) {
+                    for (int i = 0; i < avObjects.size(); i++) {
                         AVObject todo = AVObject.createWithoutData("_User", avObjects.get(i).getObjectId());
+                        final int finalI = i;
                         todo.fetchInBackground(new GetCallback<AVObject>() {
                             @Override
                             public void done(AVObject avObject, AVException e) {
-                                Adapter_Message adapter1;
-                                listName.add(avObject.getString("username"));
-                                listUserPhotoUris.add(avObject.getString("userPhotoUri"));
-//                                listUserobjectID.add(avObject.getString("objectId"));
-                                if (listName.size() == avObjects.size()) {
-                                    for (int k = 0; k < listName.size(); k++) {
-                                        MessageDataBean x1 = new MessageDataBean(listName.get(k), "", "", GetDraweeControler(listUserPhotoUris.get(k)));
-                                        itemFollwerslist.add(x1);
-                                    }
-                                    StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-                                    recycler.setLayoutManager(layoutManager);  //将布局管理器设置到recyclerView中
-                                    recycler.setNestedScrollingEnabled(false);  //recyclerView设置禁止嵌套滑动
-                                    adapter1 = new Adapter_Message(itemFollwerslist); //获取适配器实例
-                                    recycler.setAdapter(adapter1);
-
-                                    /**条目点击事件*/
-                                    adapter1.setOnItemClickListener(new Adapter_Message.OnItemClickListener() {
-                                        @Override
-                                        public void setOnItemClickListener(View view,int position) {
-                                            Intent intent = new Intent(context,UserDetailInfoActivity.class);
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("userObjectId","");
-                                            bundle.putString("userName",listName.get(position));
-                                            intent.putExtras(bundle);
-                                            context.startActivity(intent);
-                                        }
-                                    });
-                                    /**条目长按事件*/
-                                    adapter1.setOnLongClickListener(new Adapter_Message.OnLongClickListener() {
-                                        @Override
-                                        public void setOnLongClickListener(View view, final int position) {
-                                            /**删除条目的方法*/
-//                adapter.removeData(position);
-                                            //Toast.makeText(getActivity(),"这是条目"+position+1,Toast.LENGTH_SHORT).show();
-
-                                        }
-                                    });
+                                String name = (String) avObject.get("username"), uri = (String) avObject.get("userPhotoUri");
+                                listName.add(name);
+                                listUserPhotoUris.add(uri);
+                                MessageDataBean x1 = new MessageDataBean(name, "", "", GetDraweeControler(uri));
+                                itemFollwerslist.add(x1);
+                                if (finalI == avObjects.size() - 1) {
+                                    Message message = new Message();  //创建一个message对象。并将它的what字段的值指定为UPDATA_TEXT
+                                    message.what = 3;
+                                    handler.sendMessage(message);     //handler去发送消息
                                 }
                             }
-
                         });
                     }
                 }
@@ -460,8 +405,8 @@ public class ImplClass_IfragmentView implements IfragmentView {
         else if(Flag == 2){
             adapter = new FragmentPagerItemAdapter(
                     fragmentActivity.getSupportFragmentManager(), FragmentPagerItems.with(context)
-                    .add(titleDiscover[0], clazzDiscover[0])   //添加 周边 碎片
-                    .add(titleDiscover[1], clazzDiscover[1])  //添加 办公办事 碎片
+                    .add(titleDiscover[0], clazzDiscover[0])   //添加 办公办事 碎片
+                    .add(titleDiscover[1], clazzDiscover[1])  //添加 周边 碎片
                     .create());
             DiscoverViewpager.setAdapter(adapter);
             DiscoverViewpagertab.setViewPager(DiscoverViewpager);

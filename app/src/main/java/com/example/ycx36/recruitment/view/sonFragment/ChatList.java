@@ -43,8 +43,8 @@ public class ChatList extends LCIMConversationListFragment {
    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(cn.leancloud.chatkit.R.layout.lcim_conversation_list_fragment, container, false);
-        this.refreshLayout = (SwipeRefreshLayout)view.findViewById(cn.leancloud.chatkit.R.id.fragment_conversation_srl_pullrefresh);
-        this.recyclerView = (RecyclerView)view.findViewById(cn.leancloud.chatkit.R.id.fragment_conversation_srl_view);
+        this.refreshLayout = view.findViewById(cn.leancloud.chatkit.R.id.fragment_conversation_srl_pullrefresh);
+        this.recyclerView = view.findViewById(cn.leancloud.chatkit.R.id.fragment_conversation_srl_view);
         this.refreshLayout.setEnabled(false);
         this.layoutManager = new LinearLayoutManager(this.getActivity());
         this.recyclerView.setLayoutManager(this.layoutManager);
