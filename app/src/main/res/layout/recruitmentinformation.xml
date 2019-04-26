@@ -4,14 +4,6 @@
     android:layout_height="match_parent">
 
 
-    <com.tuesda.walker.circlerefresh.CircleRefreshLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:AniBackColor="#E91E63"
-        app:AniForeColor="#ffffffff"
-        app:CircleSmaller="6">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,6 +18,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/joblist"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -46,50 +39,27 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerPosition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <com.tuesda.walker.circlerefresh.CircleRefreshLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/refresh_layout"
                 android:layout_below="@+id/linear2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
-
-            <LinearLayout
-                android:id="@+id/linear3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/recyclerPosition"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:layout_height="match_parent"
+                app:AniBackColor="#E91E63"
+                app:AniForeColor="#ffffffff"
+                app:CircleSmaller="6">
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/black_overlay" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerPosition"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:text="猜你喜欢" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
 
-                <View
-                    android:layout_width="20dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/black_overlay" />
-
-            </LinearLayout>
+            </com.tuesda.walker.circlerefresh.CircleRefreshLayout>
 
         </RelativeLayout>
-
-    </com.tuesda.walker.circlerefresh.CircleRefreshLayout>
 
 
 </RelativeLayout>

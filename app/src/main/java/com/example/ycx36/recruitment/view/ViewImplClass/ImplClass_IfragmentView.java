@@ -339,7 +339,15 @@ public class ImplClass_IfragmentView implements IfragmentView {
                         todo.fetchInBackground(new GetCallback<AVObject>() {
                             @Override
                             public void done(AVObject avObject, AVException e) {
-                                String name = (String) avObject.get("username"), uri = (String) avObject.get("userPhotoUri");
+                                String name = "";
+                                String uri = "";
+                                try{
+                                    name = (String) avObject.get("username");
+                                    uri = (String) avObject.get("userPhotoUri");
+                                }catch (Exception ex){
+                                    Log.d("testyyyy1",ex.getMessage());
+                                    Log.d("testyyyy2",""+avObjects.size());
+                                }
                                 listName.add(name);
                                 listUserPhotoUris.add(uri);
                                 MessageDataBean x1 = new MessageDataBean(name, "", "", GetDraweeControler(uri));

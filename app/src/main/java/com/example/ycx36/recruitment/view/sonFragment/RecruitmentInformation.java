@@ -36,7 +36,6 @@ import butterknife.OnClick;
 public class RecruitmentInformation extends Fragment {
 
     @BindView(R.id.recyclerPosition) RecyclerView recyclerPosition;
-    @BindView(R.id.toTalentsTreatment) TextView toTalentsTreatment;
     @BindView(R.id.refresh_layout) CircleRefreshLayout refresh_layout;
 
     Adapter_Position adapter_position;
@@ -51,11 +50,13 @@ public class RecruitmentInformation extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.toTalentsTreatment})
+    @OnClick({R.id.toTalentsTreatment,R.id.joblist})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.toTalentsTreatment:   //返回键
                 startActivity(new Intent(getActivity(), activity_TalentsTreatment.class));
+                break;
+            case R.id.joblist:
                 break;
         }
     }
