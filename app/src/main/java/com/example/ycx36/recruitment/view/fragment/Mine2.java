@@ -21,6 +21,7 @@ import com.example.ycx36.recruitment.view.activity.EditAccountInfoActivity;
 import com.example.ycx36.recruitment.view.activity.FeedbackActivity;
 import com.example.ycx36.recruitment.view.activity.FillResmeActivity;
 import com.example.ycx36.recruitment.view.activity.LoginActivity;
+import com.example.ycx36.recruitment.view.activity.LoginActivity2;
 import com.example.ycx36.recruitment.view.activity.MapActivity;
 import com.example.ycx36.recruitment.view.activity.MyDetailInfoActivity;
 import com.example.ycx36.recruitment.view.activity.SchoolMapActivity;
@@ -83,7 +84,7 @@ public class Mine2 extends Fragment{
                 if (currentUser != null){
                     startActivity(new Intent(getActivity(),MyDetailInfoActivity.class));
                 }else
-                    startActivity(new Intent(getActivity(),LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity2.class));
                 break;
             case R.id.LL_myinfo:
                 startActivity(new Intent(getActivity(),EditAccountInfoActivity.class));
