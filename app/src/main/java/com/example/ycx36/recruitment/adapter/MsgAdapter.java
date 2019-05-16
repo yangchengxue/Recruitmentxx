@@ -24,6 +24,7 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder>{
         LinearLayout rightLayout;
         TextView leftMsg;
         TextView rightMsg;
+        TextView right_msg_system;
         SimpleDraweeView image_oppositePerson,image_my;
 
 
@@ -33,6 +34,7 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder>{
             rightLayout = view.findViewById(R.id.right_layout);
             leftMsg = view.findViewById(R.id.left_msg);
             rightMsg = view.findViewById(R.id.right_msg);
+            right_msg_system = view.findViewById(R.id.right_msg_system);
             image_oppositePerson = view.findViewById(R.id.image_oppositePerson);
             image_my = view.findViewById(R.id.image_my);
         }
@@ -63,6 +65,7 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder>{
             holder.leftLayout.setVisibility(View.GONE);
             holder.image_oppositePerson.setVisibility(View.GONE);  //设置客服头像不显示。
             holder.rightMsg.setText(msg.getContent());
+            holder.right_msg_system.setText(msg.getMsg_system());
         }
     }
 

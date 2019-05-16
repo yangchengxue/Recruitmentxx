@@ -167,40 +167,40 @@ public class ImplClass_IfragmentView implements IfragmentView {
             }
         };
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())  //Gson解析器
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl("https://api.douban.com")
-                .build();
-        GetOnShowMoviesRequest_Interface getOnShowMoviesRequest_interface = retrofit.create(GetOnShowMoviesRequest_Interface.class);
-
-        getOnShowMoviesRequest_interface.getOnShowMoviesData()
-                .subscribeOn(Schedulers.io())  //观察者切换新线程,subscribe只能调用一次。
-                .doOnNext(new Action1<Gson_OnShowMoviesData>() {    //请求结束后调用 doOnNext(),并获得data数据
-                    @Override
-                    public void call(Gson_OnShowMoviesData datas) {
-                        for (int i=0; i<datas.getSubjects().size() ;i++){
-                            String s0 = datas.getSubjects().get(i).getTitle();
-                            MovieName.add(s0);
-                            if (s0.length()>5){
-                                s0 = s0.substring(0,5)+"…";
-                            }
-                            MovieUrls.add(datas.getSubjects().get(i).getAlt());
-                            SurroundingPlaceData surroundingPlaceData = new SurroundingPlaceData(s0, "豆瓣评分："+String.valueOf(datas.getSubjects().get(i).getRating().getAverage()), GetDraweeControler(datas.getSubjects().get(i).getImages().getMedium()));
-                            itemlist1.add(surroundingPlaceData);
-                        }
-                        Message message = new Message();  //创建一个message对象。并将它的what字段的值指定为UPDATA_TEXT
-                        message.what = 1;
-                        handler.sendMessage(message);     //handler去发送消息
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())   //被观察者切换到主线程
-                .subscribe(new Action1<Gson_OnShowMoviesData>() {    //观察者监听到datas数据,主线程中执行
-                    @Override
-                    public void call(Gson_OnShowMoviesData datas) {
-
-                    }
-                });
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .addConverterFactory(GsonConverterFactory.create())  //Gson解析器
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .baseUrl("https://api.douban.com")
+//                .build();
+//        GetOnShowMoviesRequest_Interface getOnShowMoviesRequest_interface = retrofit.create(GetOnShowMoviesRequest_Interface.class);
+//
+//        getOnShowMoviesRequest_interface.getOnShowMoviesData()
+//                .subscribeOn(Schedulers.io())  //观察者切换新线程,subscribe只能调用一次。
+//                .doOnNext(new Action1<Gson_OnShowMoviesData>() {    //请求结束后调用 doOnNext(),并获得data数据
+//                    @Override
+//                    public void call(Gson_OnShowMoviesData datas) {
+//                        for (int i=0; i<datas.getSubjects().size() ;i++){
+//                            String s0 = datas.getSubjects().get(i).getTitle();
+//                            MovieName.add(s0);
+//                            if (s0.length()>5){
+//                                s0 = s0.substring(0,5)+"…";
+//                            }
+//                            MovieUrls.add(datas.getSubjects().get(i).getAlt());
+//                            SurroundingPlaceData surroundingPlaceData = new SurroundingPlaceData(s0, "豆瓣评分："+String.valueOf(datas.getSubjects().get(i).getRating().getAverage()), GetDraweeControler(datas.getSubjects().get(i).getImages().getMedium()));
+//                            itemlist1.add(surroundingPlaceData);
+//                        }
+//                        Message message = new Message();  //创建一个message对象。并将它的what字段的值指定为UPDATA_TEXT
+//                        message.what = 1;
+//                        handler.sendMessage(message);     //handler去发送消息
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())   //被观察者切换到主线程
+//                .subscribe(new Action1<Gson_OnShowMoviesData>() {    //观察者监听到datas数据,主线程中执行
+//                    @Override
+//                    public void call(Gson_OnShowMoviesData datas) {
+//
+//                    }
+//                });
 
 
         Retrofit retrofit2 = new Retrofit.Builder()

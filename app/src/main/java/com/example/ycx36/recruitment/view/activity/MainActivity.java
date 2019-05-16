@@ -5,6 +5,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -13,7 +15,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +43,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import q.rorbin.badgeview.Badge;
+import q.rorbin.badgeview.QBadgeView;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -92,6 +98,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         iactivityView.replaceFragment(1,fragmentManager,homePage);
         iactivityView.setBoomMenuButton(bmb);
+
+
+
+
+//        //获取整个的NavigationView
+//        BottomNavigationMenuView menuView = (BottomNavigationMenuView) navigation.getChildAt(0);
+//        //这里就是获取所添加的每一个Tab(或者叫menu)，
+//        View tab = menuView.getChildAt(2);
+//        new QBadgeView(this).bindTarget(tab).setBadgeNumber(1);
+
+//        BottomNavigationItemView itemView = (BottomNavigationItemView) tab;
+//        //加载我们的角标View，新创建的一个布局
+//        View badge = LayoutInflater.from(this).inflate(R.layout.im_badge, menuView, false);
+//        //添加到Tab上
+//        itemView.addView(badge);
+//        TextView textView = badge.findViewById(R.id.tv_msg_count);
+//        textView.setText(String.valueOf(1));
+//        //无消息时可以将它隐藏即可
+//        textView.setVisibility(View.VISIBLE);
     }
 
     @Override

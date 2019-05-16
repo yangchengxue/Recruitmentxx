@@ -137,4 +137,6 @@ dependencies {
     //OKHttp
     implementation 'com.squareup.okhttp3:okhttp:3.7.0'
     implementation files('libs/AMap3DMap_6.5.0_AMapSearch_6.5.0_AMapLocation_4.4.0_20181122.jar')
+
+    implementation 'q.rorbin:badgeview:1.1.3'
 }
