@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.leancloud.chatkit.activity.LCIMConversationListFragment;
+import q.rorbin.badgeview.QBadgeView;
 
 public class Message2 extends Fragment {
 
@@ -52,6 +54,7 @@ public class Message2 extends Fragment {
             ifragmentView = new ImplClass_IfragmentView(view.getContext());
             ifragmentView.ChangeMessageTitleStyle(2,getActivity(),RelativePrivate,t1,RelativeContact,t2,RelativeAddUser,t3);
             iactivityView.showFragment(3,fragmentManager,chatList,privateMessage);
+//            new QBadgeView(view.getContext()).bindTarget(RelativePrivate).setBadgeNumber(1);
         }
         return view;
     }

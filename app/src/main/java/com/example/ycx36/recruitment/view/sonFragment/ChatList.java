@@ -64,7 +64,7 @@ public class ChatList extends LCIMConversationListFragment {
         this.itemAdapter = new LCIMCommonListAdapter(LCIMConversationItemHolder.class);
         this.recyclerView.setAdapter(this.itemAdapter);
         EventBus.getDefault().register(this);
-       new QBadgeView(view.getContext()).bindTarget(messageItemDraw).setBadgeNumber(1);
+        new QBadgeView(view.getContext()).bindTarget(messageItemDraw).setBadgeNumber(1);
         return view;
     }
 

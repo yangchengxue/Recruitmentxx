@@ -45,7 +45,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginTop="3dp"
             android:layout_toEndOf="@+id/messageItemDraw"
-            android:text="系统消息"
+            android:text="系统消息(你有一条回复待查看)"
             android:textSize="15sp"
             android:textStyle="bold" />
 
