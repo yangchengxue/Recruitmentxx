@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ycx36.recruitment.R;
 import com.example.ycx36.recruitment.view.ViewImplClass.ImplClass_IactivityView;
@@ -80,15 +81,16 @@ public class Message2 extends Fragment {
         }
     }
 
-    Badge badge;
-    public void onStart() {
-        super.onStart();
-        SharedPreferences pref = getActivity().getSharedPreferences("ifReadMsg",MODE_PRIVATE);
-        String value = pref.getString("ifReadMsg","");
-        if (value.equals("no")){
-            badge  = new QBadgeView(getActivity()).bindTarget(RelativePrivate).setBadgeNumber(1);
-        }else if (value.equals("yes")){
-            badge.hide(true);
-        }
-    }
+//    Badge badge;
+//    public void onResume() {
+//        super.onResume();
+////        Toast.makeText(getActivity(),"2222222222",Toast.LENGTH_SHORT).show();
+//        SharedPreferences pref = getActivity().getSharedPreferences("ifReadMsg", MODE_PRIVATE);
+//        String value = pref.getString("ifReadMsg", "");
+//        if (value.equals("no")) {
+//            badge = new QBadgeView(getActivity()).bindTarget(RelativePrivate).setBadgeNumber(1);
+//        } else if (value.equals("yes")) {
+//            badge.hide(true);
+//        }
+//    }
 }

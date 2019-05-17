@@ -7,6 +7,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="gxnuColor">#D7188A</color>
+    <color name="red">#D81515</color>
 
     <color name="black_overlay">#66000000</color>
     <color name="gray">#fafafa</color>

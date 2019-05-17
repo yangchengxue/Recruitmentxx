@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
@@ -52,13 +53,14 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ChatList extends LCIMConversationListFragment {
 
-    @BindView(R.id.messageItemDraw)
-    SimpleDraweeView messageItemDraw;
+    @BindView(R.id.messageItemDraw) SimpleDraweeView messageItemDraw;
+    @BindView(R.id.tv_name)
+    TextView tv_name;
 
    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.lcim_conversation_list_fragment2, container, false);
-       ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         this.refreshLayout = view.findViewById(cn.leancloud.chatkit.R.id.fragment_conversation_srl_pullrefresh);
         this.recyclerView = view.findViewById(cn.leancloud.chatkit.R.id.fragment_conversation_srl_view);
         this.refreshLayout.setEnabled(false);
@@ -81,14 +83,18 @@ public class ChatList extends LCIMConversationListFragment {
     }
 
     Badge badge;
-    public void onStart() {
-        super.onStart();
+    @SuppressLint("ResourceAsColor")
+    public void onResume() {
+        super.onResume();
+//        Toast.makeText(getActivity(),"2222222222",Toast.LENGTH_SHORT).show();
         SharedPreferences pref = getActivity().getSharedPreferences("ifReadMsg",MODE_PRIVATE);
         String value = pref.getString("ifReadMsg","");
         if (value.equals("no")){
             badge  = new QBadgeView(getActivity()).bindTarget(messageItemDraw).setBadgeNumber(1);
         }else if (value.equals("yes")){
             badge.hide(true);
+            tv_name.setText("系统消息(暂无未读消息)");
+            tv_name.setTextColor(R.color.black);
         }
     }
 }
