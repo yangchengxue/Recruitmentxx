@@ -2,6 +2,7 @@ package com.example.ycx36.recruitment.view.activity;
 
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -98,7 +99,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         iactivityView.replaceFragment(1,fragmentManager,homePage);
         iactivityView.setBoomMenuButton(bmb);
-
+        SharedPreferences.Editor editor = getSharedPreferences("ifReadMsg",MODE_PRIVATE).edit();
+        editor.putString("ifReadMsg","no");
+        editor.apply();
 
 
 

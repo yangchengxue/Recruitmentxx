@@ -1,6 +1,7 @@
 package com.example.ycx36.recruitment.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -63,6 +64,10 @@ public class activity_SystemMsg extends AppCompatActivity {
                 handler.sendMessage(message);     //handler去发送消息
             }
         });
+
+        SharedPreferences.Editor editor = getSharedPreferences("ifReadMsg",MODE_PRIVATE).edit();
+        editor.putString("ifReadMsg","yes");
+        editor.apply();
 
     }
     @SuppressLint("HandlerLeak") final Handler handler = new Handler() {

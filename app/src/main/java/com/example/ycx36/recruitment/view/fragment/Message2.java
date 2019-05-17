@@ -2,6 +2,7 @@ package com.example.ycx36.recruitment.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,7 +27,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.leancloud.chatkit.activity.LCIMConversationListFragment;
+import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Message2 extends Fragment {
 
@@ -54,7 +58,6 @@ public class Message2 extends Fragment {
             ifragmentView = new ImplClass_IfragmentView(view.getContext());
             ifragmentView.ChangeMessageTitleStyle(2,getActivity(),RelativePrivate,t1,RelativeContact,t2,RelativeAddUser,t3);
             iactivityView.showFragment(3,fragmentManager,chatList,privateMessage);
-//            new QBadgeView(view.getContext()).bindTarget(RelativePrivate).setBadgeNumber(1);
         }
         return view;
     }
@@ -74,6 +77,18 @@ public class Message2 extends Fragment {
                 startActivity(new Intent(getActivity(), AddAttentionActivity.class));
                 break;
 
+        }
+    }
+
+    Badge badge;
+    public void onStart() {
+        super.onStart();
+        SharedPreferences pref = getActivity().getSharedPreferences("ifReadMsg",MODE_PRIVATE);
+        String value = pref.getString("ifReadMsg","");
+        if (value.equals("no")){
+            badge  = new QBadgeView(getActivity()).bindTarget(RelativePrivate).setBadgeNumber(1);
+        }else if (value.equals("yes")){
+            badge.hide(true);
         }
     }
 }

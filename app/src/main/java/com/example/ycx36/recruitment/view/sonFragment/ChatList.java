@@ -2,6 +2,7 @@ package com.example.ycx36.recruitment.view.sonFragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,12 +40,15 @@ import cn.leancloud.chatkit.cache.LCIMConversationItemCache;
 import cn.leancloud.chatkit.view.LCIMDividerItemDecoration;
 import cn.leancloud.chatkit.viewholder.LCIMConversationItemHolder;
 import de.greenrobot.event.EventBus;
+import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ChatList extends LCIMConversationListFragment {
 
@@ -64,7 +68,6 @@ public class ChatList extends LCIMConversationListFragment {
         this.itemAdapter = new LCIMCommonListAdapter(LCIMConversationItemHolder.class);
         this.recyclerView.setAdapter(this.itemAdapter);
         EventBus.getDefault().register(this);
-        new QBadgeView(view.getContext()).bindTarget(messageItemDraw).setBadgeNumber(1);
         return view;
     }
 
@@ -77,4 +80,15 @@ public class ChatList extends LCIMConversationListFragment {
         }
     }
 
+    Badge badge;
+    public void onStart() {
+        super.onStart();
+        SharedPreferences pref = getActivity().getSharedPreferences("ifReadMsg",MODE_PRIVATE);
+        String value = pref.getString("ifReadMsg","");
+        if (value.equals("no")){
+            badge  = new QBadgeView(getActivity()).bindTarget(messageItemDraw).setBadgeNumber(1);
+        }else if (value.equals("yes")){
+            badge.hide(true);
+        }
+    }
 }
